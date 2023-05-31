@@ -1,14 +1,53 @@
-body {
-    margin: 0;
-    padding: 0;
-  }
-  
-  #gameCanvas {
-    background-color: #000;
-    display: block;
-    margin: 20px auto;
+html{
+  background-color: yellowgreen;
+  background-size:cover;
+}
 
-    width: 25%;
-    height: 25%;
-  }
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  margin-top: 40px;
+}
+
+.container_base {
+  background-image: url(../IMG/Snake.webp);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 750px;
+  height: 500px;
+  border-radius: 3%;
+  border: 5px solid black;
+  border-radius: 35px;
+  box-shadow: 25px 25px 50px rgb(20, 93, 20), -25px -25px 50px rgb(20, 93, 20);
+  margin: 0 auto; 
+}
+
+.marcador {
+  width: 250px;
+  height: 55px;
+  margin-top: 10px;
+  margin-left: 10px;
+  background-color: yellow;
+  border-radius: 35px;
+  text-align: center;
+  border: 3px solid black;
+}
+
+.container_game {
+  margin-top: 200px;
+  margin-bottom: 3px;
+}
+
+#gameCanvas {
+  background-color:black;
+  display: block;
+  margin: 130px;
+  margin-bottom: 50PX;
+  width: 400px;
+  height: 350px;
+  border: 5px solid darkgreen;
+  border-radius: 35px;
+}
   
