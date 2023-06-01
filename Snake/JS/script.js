@@ -1,10 +1,8 @@
-const lienzo = document.getElementById("gameCanvas"); // Obtener el elemento del lienzo del juego
-const ctx = lienzo.getContext("2d"); // Obtener el contexto 2D del lienzo
-const caja = 20; // Tamaño de cada caja en el lienzo
-const tamanoLienzo = 20; // Tamaño del lienzo en número de cajas
+const contenedorJuego = document.getElementById("gameContainer");
+const caja = 20; // Tamaño de cada caja en el juego
+const tamanoLienzo = 20; // Tamaño del juego en número de cajas
 
 let serpiente = []; // Arreglo para almacenar los segmentos de la serpiente
-
 serpiente[0] = { x: 10 * caja, y: 10 * caja }; // Posición inicial de la cabeza de la serpiente
 
 let comida = { // Posición inicial de la comida
@@ -35,20 +33,37 @@ function colision(nuevaCabeza, serpiente) {
 }
 
 function dibujar() {
-  ctx.fillStyle = "#000"; // Establecer el color de fondo del lienzo
-  ctx.fillRect(0, 0, lienzo.width, lienzo.height); // Dibujar un rectángulo para llenar todo el lienzo
+  contenedorJuego.innerHTML = ""; // Limpiar el contenedor del juego
 
   for (let i = 0; i < serpiente.length; i++) { // Dibujar cada segmento de la serpiente
-    ctx.fillStyle = "#00ff"; // Establecer el color de la serpiente
-    ctx.fillRect(serpiente[i].x, serpiente[i].y, caja, caja); // Dibujar un rectángulo para representar cada segmento
+    const segmento = document.createElement("div");
+    segmento.style.width = caja + "px";
+    segmento.style.height = caja + "px";
+    segmento.style.backgroundColor = "#00ff";
+    segmento.style.position = "absolute";
+    segmento.style.left = serpiente[i].x + "px";
+    segmento.style.top = serpiente[i].y + "px";
+    contenedorJuego.appendChild(segmento);
   }
 
-  ctx.fillStyle = "#ff0000"; // Establecer el color de la comida
-  ctx.fillRect(comida.x, comida.y, caja, caja); // Dibujar un rectángulo para representar la comida
+  const comidaElemento = document.createElement("div"); // Crear un elemento para representar la comida
+  comidaElemento.style.width = caja + "px";
+  comidaElemento.style.height = caja + "px";
+  comidaElemento.style.backgroundColor = "#ff0000";
+  comidaElemento.style.position = "absolute";
+  comidaElemento.style.left = comida.x + "px";
+  comidaElemento.style.top = comida.y + "px";
+  contenedorJuego.appendChild(comidaElemento);
 
-  ctx.fillStyle = "#fff"; // Establecer el color del texto
-  ctx.font = "20px Arial"; // Establecer el tamaño y la fuente del texto
-  ctx.fillText("Puntaje: " + puntaje, caja, caja); // Dibujar el puntaje en el lienzo
+  const puntajeElemento = document.createElement("div"); // Crear un elemento para mostrar el puntaje
+  puntajeElemento.style.position = "absolute";
+  puntajeElemento.style.left = "10px";
+  puntajeElemento.style.top = "10px";
+  puntajeElemento.style.color = "#fff";
+  puntajeElemento.style.fontFamily = "Arial";
+  puntajeElemento.style.fontSize = "20px";
+  puntajeElemento.textContent = "Puntaje: " + puntaje;
+  contenedorJuego.appendChild(puntajeElemento);
 
   let cabezaX = serpiente[0].x; // Obtener la coordenada X de la cabeza de la serpiente
   let cabezaY = serpiente[0].y; // Obtener la coordenada Y de la cabeza de la serpiente
@@ -64,7 +79,7 @@ function dibujar() {
   };
 
   if (
-    cabezaX < 0 || // Verificar si la serpiente ha colisionado con los bordes del lienzo
+    cabezaX < 0 || // Verificar si la serpiente ha colisionado con los bordes del juego
     cabezaY < 0 ||
     cabezaX >= tamanoLienzo * caja ||
     cabezaY >= tamanoLienzo * caja ||
@@ -77,14 +92,26 @@ function dibujar() {
 
   if (cabezaX === comida.x && cabezaY === comida.y) { // Verificar si la serpiente ha alcanzado la comida
     puntaje++; // Incrementar el puntaje
-    comida = { // Generar una nueva posición para la comida de forma aleatoria
+    comida = { // Generar nueva posición aleatoria para la comida
       x: Math.floor(Math.random() * tamanoLienzo) * caja,
       y: Math.floor(Math.random() * tamanoLienzo) * caja
     };
   } else {
-    serpiente.pop(); // Si no se alcanzó la comida, eliminar el último segmento de la serpiente para simular el movimiento
+    serpiente.pop(); // Eliminar el último segmento de la serpiente si no ha alcanzado la comida
   }
-
 }
 
-let juego = setInterval(dibujar, 150); // Ejecutar la función dibujar cada 150 milisegundos para actualizar el juego
+function iniciarJuego() {
+  serpiente = []; // Reiniciar la serpiente
+  serpiente[0] = { x: 10 * caja, y: 10 * caja }; // Posición inicial de la cabeza de la serpiente
+  puntaje = 0; // Reiniciar el puntaje
+  direccion = "DERECHA"; // Dirección inicial de la serpiente
+  comida = { // Posición inicial de la comida
+    x: Math.floor(Math.random() * tamanoLienzo) * caja,
+    y: Math.floor(Math.random() * tamanoLienzo) * caja
+  };
+  juego = setInterval(dibujar, 100); // Iniciar el juego y llamar a la función dibujar cada 100 milisegundos
+}
+
+document.getElementById("playButton").addEventListener("click", iniciarJuego); // Agregar un evento al botón de jugar para iniciar el juego
+document.getElementById("reinitButton").addEventListener("click", iniciarJuego); // Agregar un evento al botón de reiniciar para reiniciar el juego

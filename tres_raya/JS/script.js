@@ -72,7 +72,6 @@ var squares = document.querySelectorAll(".square"); // Selección de todos los c
             }
 
             // Función que reinicia el juego
-            // Función que reinicia el juego
             function restartGame() {
                 // Eliminar las clases "X" y "O" de cada cuadrado, limpiar su contenido y eliminar el listener de click actual.
                 squares.forEach(function(square) {

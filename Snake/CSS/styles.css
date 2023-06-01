@@ -44,22 +44,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-#gameCanvas {
-  display: block;
+  border: 3px solid black;
   width: 400px;
-  height: 350px;
-  border: 5px solid darkgreen;
-  border-radius: 35px;
 }
 
-.button_container{
+.button_container {
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
-#playButton, #reinitButton{
+#playButton,
+#reinitButton {
   background-color: orange;
   border-radius: 35px;
   border: 3px solid black;
@@ -67,4 +62,3 @@ body {
   height: 30px;
   text-align: center;
 }
-
