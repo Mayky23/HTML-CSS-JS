@@ -1,6 +1,6 @@
-html{
+html {
   background-color: yellowgreen;
-  background-size:cover;
+  background-size: cover;
 }
 
 body {
@@ -17,11 +17,14 @@ body {
   background-repeat: no-repeat;
   width: 750px;
   height: 500px;
-  border-radius: 3%;
-  border: 5px solid black;
   border-radius: 35px;
+  border: 5px solid black;
   box-shadow: 25px 25px 50px rgb(20, 93, 20), -25px -25px 50px rgb(20, 93, 20);
-  margin: 0 auto; 
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .marcador {
@@ -36,18 +39,32 @@ body {
 }
 
 .container_game {
-  margin-top: 200px;
-  margin-bottom: 3px;
+  margin-top: 20px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #gameCanvas {
-  background-color:black;
   display: block;
-  margin: 130px;
-  margin-bottom: 50PX;
   width: 400px;
   height: 350px;
   border: 5px solid darkgreen;
   border-radius: 35px;
 }
-  
+
+.button_container{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+#playButton, #reinitButton{
+  background-color: orange;
+  border-radius: 35px;
+  border: 3px solid black;
+  width: 85px;
+  height: 30px;
+  text-align: center;
+}
+

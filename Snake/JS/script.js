@@ -13,7 +13,7 @@ let comida = { // Posición inicial de la comida
 };
 
 let puntaje = 0; // Puntuación inicial
-let direccion;
+let direccion = "DERECHA"; // Dirección inicial de la serpiente
 
 document.addEventListener("keydown", cambiarDireccion); // Agregar un evento para cambiar la dirección de la serpiente al presionar una tecla
 
@@ -58,16 +58,6 @@ function dibujar() {
   if (direccion === "DERECHA") cabezaX += caja; // Actualizar la coordenada X de la cabeza de la serpiente según la dirección
   if (direccion === "ABAJO") cabezaY += caja; // Actualizar la coordenada Y de la cabeza de la serpiente según la dirección
 
-  if (cabezaX === comida.x && cabezaY === comida.y) { // Verificar si la serpiente ha alcanzado la comida
-    puntaje++; // Incrementar el puntaje
-    comida = { // Generar una nueva posición para la comida de forma aleatoria
-      x: Math.floor(Math.random() * tamanoLienzo) * caja,
-      y: Math.floor(Math.random() * tamanoLienzo) * caja
-    };
-  } else {
-    serpiente.pop(); // Si no se alcanzó la comida, eliminar el último segmento de la serpiente para simular el movimiento
-  }
-
   const nuevaCabeza = { // Crear una nueva cabeza para la serpiente en la nueva posición
     x: cabezaX,
     y: cabezaY
@@ -84,6 +74,16 @@ function dibujar() {
   }
 
   serpiente.unshift(nuevaCabeza); // Agregar la nueva cabeza a la serpiente
+
+  if (cabezaX === comida.x && cabezaY === comida.y) { // Verificar si la serpiente ha alcanzado la comida
+    puntaje++; // Incrementar el puntaje
+    comida = { // Generar una nueva posición para la comida de forma aleatoria
+      x: Math.floor(Math.random() * tamanoLienzo) * caja,
+      y: Math.floor(Math.random() * tamanoLienzo) * caja
+    };
+  } else {
+    serpiente.pop(); // Si no se alcanzó la comida, eliminar el último segmento de la serpiente para simular el movimiento
+  }
 
 }
 
