@@ -46,6 +46,7 @@ body {
   justify-content: center;
   border: 3px solid black;
   width: 400px;
+  height: 400px;
 }
 
 .button_container {
@@ -53,8 +54,8 @@ body {
   margin-bottom: 15px;
 }
 
-#playButton,
-#reinitButton {
+#botonJugar,
+#botonReiniciar {
   background-color: orange;
   border-radius: 35px;
   border: 3px solid black;

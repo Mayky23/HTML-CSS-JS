@@ -3,8 +3,6 @@ const caja = 20; // Tamaño de cada caja en el juego
 const tamanoLienzo = 20; // Tamaño del juego en número de cajas
 
 let serpiente = []; // Arreglo para almacenar los segmentos de la serpiente
-serpiente[0] = { x: 10 * caja, y: 10 * caja }; // Posición inicial de la cabeza de la serpiente
-
 let comida = { // Posición inicial de la comida
   x: Math.floor(Math.random() * tamanoLienzo) * caja,
   y: Math.floor(Math.random() * tamanoLienzo) * caja
@@ -12,6 +10,7 @@ let comida = { // Posición inicial de la comida
 
 let puntaje = 0; // Puntuación inicial
 let direccion = "DERECHA"; // Dirección inicial de la serpiente
+let juego; // Variable para almacenar el intervalo del juego
 
 document.addEventListener("keydown", cambiarDireccion); // Agregar un evento para cambiar la dirección de la serpiente al presionar una tecla
 
@@ -55,15 +54,8 @@ function dibujar() {
   comidaElemento.style.top = comida.y + "px";
   contenedorJuego.appendChild(comidaElemento);
 
-  const puntajeElemento = document.createElement("div"); // Crear un elemento para mostrar el puntaje
-  puntajeElemento.style.position = "absolute";
-  puntajeElemento.style.left = "10px";
-  puntajeElemento.style.top = "10px";
-  puntajeElemento.style.color = "#fff";
-  puntajeElemento.style.fontFamily = "Arial";
-  puntajeElemento.style.fontSize = "20px";
-  puntajeElemento.textContent = "Puntaje: " + puntaje;
-  contenedorJuego.appendChild(puntajeElemento);
+  const puntajeElemento = document.getElementById("puntaje"); // Obtener el elemento del puntaje
+  puntajeElemento.textContent = "Puntos: " + puntaje; // Actualizar el puntaje en el elemento
 
   let cabezaX = serpiente[0].x; // Obtener la coordenada X de la cabeza de la serpiente
   let cabezaY = serpiente[0].y; // Obtener la coordenada Y de la cabeza de la serpiente
@@ -106,12 +98,23 @@ function iniciarJuego() {
   serpiente[0] = { x: 10 * caja, y: 10 * caja }; // Posición inicial de la cabeza de la serpiente
   puntaje = 0; // Reiniciar el puntaje
   direccion = "DERECHA"; // Dirección inicial de la serpiente
-  comida = { // Posición inicial de la comida
-    x: Math.floor(Math.random() * tamanoLienzo) * caja,
-    y: Math.floor(Math.random() * tamanoLienzo) * caja
-  };
-  juego = setInterval(dibujar, 100); // Iniciar el juego y llamar a la función dibujar cada 100 milisegundos
+  juego = setInterval(dibujar, 150); // Iniciar el juego con un intervalo de 150 milisegundos
 }
 
-document.getElementById("playButton").addEventListener("click", iniciarJuego); // Agregar un evento al botón de jugar para iniciar el juego
-document.getElementById("reinitButton").addEventListener("click", iniciarJuego); // Agregar un evento al botón de reiniciar para reiniciar el juego
+function reiniciarJuego() {
+  clearInterval(juego); // Detener el juego actual
+  iniciarJuego(); // Iniciar un nuevo juego
+}
+
+// Obtener los elementos de los botones
+const botonJugar = document.getElementById("botonJugar");
+const botonReiniciar = document.getElementById("botonReiniciar");
+
+// Agregar eventos a los botones
+botonJugar.addEventListener("click", iniciarJuego);
+botonReiniciar.addEventListener("click", reiniciarJuego);
+
+// Iniciar el juego al cargar la página
+window.onload = function () {
+  iniciarJuego();
+};
