@@ -1,4 +1,4 @@
-const contenedorJuego = document.getElementById("gameContainer");
+const contenedorJuego = document.getElementById("container_game");
 const caja = 20; // Tamaño de cada caja en el juego
 const tamanoLienzo = 20; // Tamaño del juego en número de cajas
 
@@ -98,7 +98,7 @@ function iniciarJuego() {
   serpiente[0] = { x: 10 * caja, y: 10 * caja }; // Posición inicial de la cabeza de la serpiente
   puntaje = 0; // Reiniciar el puntaje
   direccion = "DERECHA"; // Dirección inicial de la serpiente
-  juego = setInterval(dibujar, 150); // Iniciar el juego con un intervalo de 150 milisegundos
+  juego = setInterval(dibujar, 300); // Iniciar el juego con un intervalo de 150 milisegundos
 }
 
 function reiniciarJuego() {
