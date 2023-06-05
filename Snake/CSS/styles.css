@@ -16,7 +16,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   width: 750px;
-  height: 500px;
+  height: 550px;
   border-radius: 35px;
   border: 5px solid black;
   box-shadow: 25px 25px 50px rgb(20, 93, 20), -25px -25px 50px rgb(20, 93, 20);
@@ -29,16 +29,18 @@ body {
 
 .marcador {
   width: 250px;
-  height: 55px;
+  height: 30px;
   margin-top: 10px;
   margin-left: 10px;
   background-color: yellow;
   border-radius: 35px;
   text-align: center;
+  justify-content: center;
   border: 3px solid black;
 }
 
 #container_game{
+  background-image: url(../IMG/cesped.jpg);
   margin-top: 20px;
   flex: 1;
   display: flex;
